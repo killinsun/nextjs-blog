@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "fs";
 import matter from "gray-matter";
-import {unified} from "unified";
+import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
 
@@ -30,7 +30,10 @@ const getPostFilePaths = (dir: string, child: string[]): string[] => {
 	return child;
 };
 
-export const getBlogPosts = async (offset= 0, limit= 10): Promise<{ posts: Post[], count: number}> => {
+export const getBlogPosts = async (
+	offset = 0,
+	limit = 10,
+): Promise<{ posts: Post[]; count: number }> => {
 	const postsDirectory = path.join(process.cwd(), "posts");
 
 	const filePaths = getPostFilePaths(postsDirectory, []);
@@ -41,9 +44,9 @@ export const getBlogPosts = async (offset= 0, limit= 10): Promise<{ posts: Post[
 			const { data, content } = matter(fileContents);
 
 			const body = await unified()
-			.use(remarkParse)
-			.use(remarkHtml)
-			.process(content);
+				.use(remarkParse)
+				.use(remarkHtml)
+				.process(content);
 			const html = body.toString();
 
 			// remove process.cwd() from filePath
@@ -60,14 +63,15 @@ export const getBlogPosts = async (offset= 0, limit= 10): Promise<{ posts: Post[
 				tags: data.tags,
 				formatter: data,
 				content: html,
-				excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
+				excerpt:
+					data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 			};
 		}),
 	).then((posts) =>
 		posts
-		.filter((post) => post.slug.indexOf('fixed-articles') === -1)
-		.sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1))
-		.slice(offset, offset + limit)
+			.filter((post) => post.slug.indexOf("fixed-articles") === -1)
+			.sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1))
+			.slice(offset, offset + limit),
 	);
 
 	return {
@@ -82,9 +86,9 @@ export const getPost = async (slug: string[]): Promise<Post> => {
 	const { data, content } = matter(fileContents);
 
 	const body = await unified()
-	.use(remarkParse)
-	.use(remarkHtml)
-	.process(content);
+		.use(remarkParse)
+		.use(remarkHtml)
+		.process(content);
 	const html = body.toString();
 
 	return {
@@ -96,14 +100,14 @@ export const getPost = async (slug: string[]): Promise<Post> => {
 		content: content,
 		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 	};
-}
+};
 
 export const getCategories = async (posts: Post[]): Promise<Set<string>> => {
 	const categories = posts.flatMap((post) => post.categories);
 	return new Set(categories);
-}
+};
 
 export const getTags = async (posts: Post[]): Promise<Set<string>> => {
 	const tags = posts.flatMap((post) => post.tags);
 	return new Set(tags);
-}
+};

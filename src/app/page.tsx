@@ -1,9 +1,17 @@
-import {ArticleMetaData} from "@/components/ArticleMetaData";
-import {getBlogPosts, getCategories, getTags} from "@/modules/blogPosts";
+import { ArticleMetaData } from "@/components/ArticleMetaData";
+import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
 
-export default async function Home() {
-	const { posts, count } = await getBlogPosts();
+export default async function Home({
+	searchParams,
+}: { searchParams: { [key: string]: string | string[] | undefined } }) {
+	const page = Number(searchParams.page as string) || 1;
+	const limit = 10;
+	const { posts, count } = await getBlogPosts(
+		page === 1 ? 0 : (page - 1) * limit,
+		limit,
+	);
+	const pages = Math.ceil(count / limit);
 
 	return (
 		<>
@@ -19,6 +27,17 @@ export default async function Home() {
 						</article>
 					</Link>
 				))}
+			</div>
+			<div className="flex justify-center my-4">
+				<div className="flex gap-4">
+					{Array.from({ length: pages }, (_, i) => (
+						<Link href={`/?page=${i + 1}`}>
+							<div
+								className={`px-4 py-2 border rounded-full hover:bg-gray-200 ${page === i + 1 ? "bg-gray-200" : ""}`}
+							>{i + 1}</div>
+						</Link>
+					))}
+				</div>
 			</div>
 		</>
 	);
