@@ -30,12 +30,12 @@ const getPostFilePaths = (dir: string, child: string[]): string[] => {
 	return child;
 };
 
-export const getBlogPosts = async (): Promise<Post[]> => {
+export const getBlogPosts = async (offset= 0, limit= 10): Promise<{ posts: Post[], count: number}> => {
 	const postsDirectory = path.join(process.cwd(), "posts");
 
 	const filePaths = getPostFilePaths(postsDirectory, []);
 
-	return await Promise.all(
+	const posts = await Promise.all(
 		filePaths.map(async (filePath) => {
 			const fileContents = fs.readFileSync(filePath, "utf8");
 			const { data, content } = matter(fileContents);
@@ -64,8 +64,16 @@ export const getBlogPosts = async (): Promise<Post[]> => {
 			};
 		}),
 	).then((posts) =>
-		posts.filter((post) => post.slug.indexOf('fixed-articles') === -1).sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1)),
+		posts
+		.filter((post) => post.slug.indexOf('fixed-articles') === -1)
+		.sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1))
+		.slice(offset, offset + limit)
 	);
+
+	return {
+		posts,
+		count: filePaths.length,
+	};
 };
 
 export const getPost = async (slug: string[]): Promise<Post> => {

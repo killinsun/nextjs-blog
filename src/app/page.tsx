@@ -1,9 +1,9 @@
-import { getBlogPosts, getCategories, getTags } from "@/modules/blogPosts";
-import Link from "next/link";
 import {ArticleMetaData} from "@/components/ArticleMetaData";
+import {getBlogPosts, getCategories, getTags} from "@/modules/blogPosts";
+import Link from "next/link";
 
 export default async function Home() {
-	const posts = await getBlogPosts();
+	const { posts, count } = await getBlogPosts();
 
 	return (
 		<>
