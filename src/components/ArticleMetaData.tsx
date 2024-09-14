@@ -1,12 +1,12 @@
-import {FC} from "react";
-import {Post} from "@/modules/blogPosts";
+import type { Post } from "@/modules/blogPosts";
+import type { FC } from "react";
 
 type Props = {
 	post: Post;
-}
+};
 
-export const ArticleMetaData:FC<Props> = (props) => {
-	const {post} = props
+export const ArticleMetaData: FC<Props> = (props) => {
+	const { post } = props;
 
 	return (
 		<div className="flex gap-4 text-sm bg-background-secondary rounded-full px-4">
@@ -20,5 +20,5 @@ export const ArticleMetaData:FC<Props> = (props) => {
 				))}
 			</div>
 		</div>
-	)
-}
+	);
+};

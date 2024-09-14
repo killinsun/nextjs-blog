@@ -19,7 +19,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${inter.className}`}>
 				<GlobalHeader />
-				<main className="my-8 text-text-secondary max-w-screen-lg mx-auto">{children}</main>
+				<main className="my-8 text-text-secondary max-w-screen-lg mx-auto">
+					{children}
+				</main>
 			</body>
 		</html>
 	);

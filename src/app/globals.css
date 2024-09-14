@@ -3,87 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
-
-body {
-}
-
 
 h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #73613e;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #73613e;
 }
 
 h2 {
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: #73613e;
-    border-left: solid 16px #f2df98;
-    margin: 48px 0 32px;
-    padding: 0 8px;
+	font-size: 1.35rem;
+	font-weight: 600;
+	color: #73613e;
+	border-left: solid 16px #f2df98;
+	margin: 48px 0 32px;
+	padding: 0 8px;
 }
 
 h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #73613e;;
-    padding-bottom: 8px;
-    border-bottom: dashed 2px #f2df98;
-    margin: 48px 0 32px;
+	font-size: 1.2rem;
+	font-weight: 500;
+	color: #73613e;
+	padding-bottom: 8px;
+	border-bottom: dashed 2px #f2df98;
+	margin: 48px 0 32px;
 }
 h4 {
-    font-size: 1.1rem;
-    margin: 48px 0 32px;
-}
-
-h5 {
-
+	font-size: 1.1rem;
+	margin: 48px 0 32px;
 }
 
 .blog-post {
-    margin: 32px auto;
-    padding: 0 16px;
+	margin: 32px auto;
+	padding: 0 16px;
 }
 
 .blog-post > p {
-    margin: 16px 0;
-    line-height: 2.15rem;
-    font-size: 1.1rem;
+	margin: 16px 0;
+	line-height: 2.15rem;
+	font-size: 1.1rem;
 }
 
 .blog-post > p > code {
-    background: #fdf6e3;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 1.0rem;
+	background: #fdf6e3;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 1.0rem;
 }
 
-.blog-post > ul, ol {
-    background: #eeeeee;
-    padding: 16px 16px;
-    font-size: 1.0rem;
+.blog-post > ul,
+ol {
+	background: #eeeeee;
+	padding: 16px 16px;
+	font-size: 1.0rem;
 }
 
 .blog-post > ul {
-    list-style-type: disc;
-    list-style-position: inside;
+	list-style-type: disc;
+	list-style-position: inside;
 }
 
 .blog-post > ul > li {
-    margin: 8px 0;
-}
-
-.blog-post > ol > li {
+	margin: 8px 0;
 }

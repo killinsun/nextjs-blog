@@ -1,9 +1,9 @@
+import fs from "node:fs";
 import path from "node:path";
-import fs from "fs";
 import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
 
 export type Post = {
 	slug: string;
@@ -22,11 +22,10 @@ const getPostFilePaths = (dir: string, child: string[]): string[] => {
 		const stat = fs.statSync(filePath);
 		if (stat.isDirectory()) {
 			getPostFilePaths(filePath, child);
-		} else {
+		} else if (path.extname(filePath).toLowerCase() === ".md") {
 			child.push(filePath);
 		}
 	}
-
 	return child;
 };
 
@@ -35,56 +34,51 @@ export const getBlogPosts = async (
 	limit = 10,
 ): Promise<{ posts: Post[]; count: number }> => {
 	const postsDirectory = path.join(process.cwd(), "posts");
-
 	const filePaths = getPostFilePaths(postsDirectory, []);
-
 	const posts = await Promise.all(
 		filePaths.map(async (filePath) => {
 			const fileContents = fs.readFileSync(filePath, "utf8");
 			const { data, content } = matter(fileContents);
-
 			const body = await unified()
 				.use(remarkParse)
 				.use(remarkHtml)
 				.process(content);
 			const html = body.toString();
-
-			// remove process.cwd() from filePath
 			const slug = filePath
-				.replace(process.cwd(), "/")
+				.replace(process.cwd(), "")
 				.replace("/posts/", "")
 				.replace(".md", "");
-
 			return {
 				slug: slug,
 				date: data.date,
 				title: data.title,
 				categories: data.categories,
 				tags: data.tags,
-				formatter: data,
 				content: html,
-				excerpt:
-					data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
+				excerpt: data.excerpt || `${content.slice(0, 200)}...`,
 			};
 		}),
 	).then((posts) =>
 		posts
 			.filter((post) => post.slug.indexOf("fixed-articles") === -1)
-			.sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1))
+			.sort((a, b) => (a.date > b.date ? -1 : 1))
 			.slice(offset, offset + limit),
 	);
-
 	return {
 		posts,
 		count: filePaths.length,
 	};
 };
 
-export const getPost = async (slug: string[]): Promise<Post> => {
+export const getPost = async (slug: string[]): Promise<Post | null> => {
 	const filePath = path.join(process.cwd(), "posts", `${slug.join("/")}.md`);
+
+	if (!fs.existsSync(filePath)) {
+		return null; // ファイルが存在しない場合はnullを返す
+	}
+
 	const fileContents = fs.readFileSync(filePath, "utf8");
 	const { data, content } = matter(fileContents);
-
 	const body = await unified()
 		.use(remarkParse)
 		.use(remarkHtml)
@@ -97,8 +91,8 @@ export const getPost = async (slug: string[]): Promise<Post> => {
 		title: data.title,
 		categories: data.categories,
 		tags: data.tags,
-		content: content,
-		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
+		content: html,
+		excerpt: data.excerpt || `${content.slice(0, 200)}...`,
 	};
 };
 
