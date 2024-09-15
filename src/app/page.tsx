@@ -15,14 +15,14 @@ export default async function Home({
 
 	return (
 		<>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-16 p-4 md:p-0">
 				{posts.map((post) => (
 					<Link key={post.slug} href={`/posts${post.slug}`}>
-						<article key={post.slug} className="mx-4 my-8">
-							<h1 className="py-2">{post.title}</h1>
+						<article key={post.slug} className="flex flex-col gap-1">
+							<h1 className="text-xl md:text-2xl">{post.title}</h1>
 							<ArticleMetaData post={post} />
-							<div className="py-2">
-								<p>{post.excerpt}</p>
+							<div>
+								<p className="text-sm">{post.excerpt}</p>
 							</div>
 						</article>
 					</Link>
