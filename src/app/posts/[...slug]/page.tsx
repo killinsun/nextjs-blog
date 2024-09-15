@@ -85,7 +85,7 @@ export async function generateMetadata(
 	return {
 		title: post?.title,
 		description: post?.excerpt,
-		keywords: `プログラミング, フロントエンド, バックエンド, 副業, エンジニア, ${post?.tags.join(",")}`,
+		keywords: `プログラミング, フロントエンド, バックエンド, 副業, エンジニア, ${post?.tags?.join(",") ?? ""}`,
 		openGraph: {
 			title: post?.title,
 			description: post?.excerpt,
