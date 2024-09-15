@@ -87,6 +87,8 @@ export async function generateMetadata(
 		description: post?.excerpt,
 		keywords: `プログラミング, フロントエンド, バックエンド, 副業, エンジニア, ${post?.tags?.join(",") ?? ""}`,
 		openGraph: {
+			url: `https://killinsun.com/posts/${slug.join("/")}`,
+			siteName: "お首が長いのよ",
 			title: post?.title,
 			description: post?.excerpt,
 			type: "article",

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 		title: "お首が長いのよ",
 		description: "チラシの裏",
 		images: {
-			url: "",
+			url: "/killinsun_logo_b.png",
 			type: "image/png",
 			width: 1200,
 			height: 630,
