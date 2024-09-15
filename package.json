@@ -10,6 +10,7 @@
 		"biome:fix": "biome format --write src/ && biome lint --write src/"
 	},
 	"dependencies": {
+		"@next/third-parties": "^14.2.11",
 		"gray-matter": "^4.0.3",
 		"next": "14.1.0",
 		"react": "^18",
