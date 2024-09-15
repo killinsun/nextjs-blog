@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -17,6 +18,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
 			<body className={`${inter.className}`}>
 				<GlobalHeader />
 				<main className="my-8 text-text-secondary max-w-screen-lg mx-auto">
