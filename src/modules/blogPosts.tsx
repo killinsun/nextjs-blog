@@ -16,6 +16,7 @@ export type Post = {
 	title: string;
 	excerpt: string;
 	content: string;
+	coverImage?: string;
 };
 
 const getPostFilePaths = (dir: string, child: string[]): string[] => {
