@@ -14,8 +14,8 @@ export default async function Home({
 	const pages = Math.ceil(count / limit);
 
 	return (
-		<>
-			<div className="flex flex-col gap-16 p-4 md:p-0">
+		<div className="flex flex-col gap-16">
+			<section className="flex flex-col gap-16 p-4 md:p-0">
 				{posts.map((post) => (
 					<Link key={post.slug} href={`/posts${post.slug}`}>
 						<article key={post.slug} className="flex flex-col gap-1">
@@ -27,9 +27,9 @@ export default async function Home({
 						</article>
 					</Link>
 				))}
-			</div>
+			</section>
 			<div className="flex justify-center my-4">
-				<div className="flex gap-4">
+				<div className="flex flex-wrap gap-2 md:gap-4">
 					{Array.from({ length: pages }, (_, i) => (
 						<Link key={`page-${i + 1}`} href={`/?page=${i + 1}`}>
 							<div
@@ -41,6 +41,6 @@ export default async function Home({
 					))}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

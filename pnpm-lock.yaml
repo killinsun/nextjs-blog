@@ -54,6 +54,9 @@ devDependencies:
   '@biomejs/biome':
     specifier: 1.9.0
     version: 1.9.0
+  '@iconify-json/logos':
+    specifier: ^1.2.0
+    version: 1.2.0
   '@iconify-json/tabler':
     specifier: ^1.2.2
     version: 1.2.2
@@ -204,6 +207,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@iconify-json/logos@1.2.0:
+    resolution: {integrity: sha512-VkU9QSqeZR2guWbecdqkcoZEAJfgJJTUm6QAsypuZQ7Cve6zy39wOXDjp2H31I8QyQy4O3Cz96+pNji6UQFg4w==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify-json/tabler@1.2.2:
     resolution: {integrity: sha512-sdHGvNKWm4TofzGm/rP5UythJBp82DqTOfjSlCLUTnuwCuRSJia5vfoIx2aEVRKq8jINj/V80c+A2k7jAW8Hlg==}
