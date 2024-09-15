@@ -80,8 +80,14 @@ export const getBlogPosts = async (
 	};
 };
 
-export const getPost = async (slug: string[]): Promise<Post> => {
-	const filePath = path.join(process.cwd(), "posts", `${slug.join("/")}.md`);
+export const getPost = async (slug: string[]): Promise<Post | null> => {
+	const postsDirectory = path.join(process.cwd(), "posts");
+
+	console.log({ slug });
+	const filePath = `${path.join(postsDirectory, ...slug)}.md`;
+	if (path.extname(filePath) !== ".md") {
+		return null;
+	}
 	const fileContents = fs.readFileSync(filePath, "utf8");
 	const { data, content } = matter(fileContents);
 
@@ -97,7 +103,7 @@ export const getPost = async (slug: string[]): Promise<Post> => {
 		title: data.title,
 		categories: data.categories,
 		tags: data.tags,
-		content: content,
+		content: html,
 		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 	};
 };
