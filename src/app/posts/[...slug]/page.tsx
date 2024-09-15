@@ -94,7 +94,7 @@ export async function generateMetadata(
 			authors: ["Killinsun"],
 			images: [
 				{
-					url: post?.coverImage || "/default-og-image.jpg",
+					url: post?.coverImage || "/default-og-image.png",
 					width: 1200,
 					height: 630,
 					alt: post?.title,
@@ -106,7 +106,7 @@ export async function generateMetadata(
 			card: "summary_large_image",
 			title: post?.title,
 			description: post?.excerpt,
-			images: [post?.coverImage || "/default-og-image.jpg"],
+			images: [post?.coverImage || "/default-og-image.png"],
 		},
 	};
 }
