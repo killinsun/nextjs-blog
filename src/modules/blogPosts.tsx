@@ -1,8 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
 export type Post = {
@@ -83,7 +86,6 @@ export const getBlogPosts = async (
 export const getPost = async (slug: string[]): Promise<Post | null> => {
 	const postsDirectory = path.join(process.cwd(), "posts");
 
-	console.log({ slug });
 	const filePath = `${path.join(postsDirectory, ...slug)}.md`;
 	if (path.extname(filePath) !== ".md") {
 		return null;
@@ -93,10 +95,11 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 
 	const body = await unified()
 		.use(remarkParse)
-		.use(remarkHtml)
+		.use(remarkRehype, { allowDangerousHtml: true })
+		.use(rehypeStringify, { allowDangerousHtml: true })
 		.process(content);
-	const html = body.toString();
 
+	const html = body.toString();
 	return {
 		slug: slug.join("/"),
 		date: data.date,
