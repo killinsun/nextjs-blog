@@ -1,6 +1,8 @@
 import path from "node:path";
 import { ArticleMetaData } from "@/components/ArticleMetaData";
 import { getPost } from "@/modules/blogPosts";
+import type { Metadata, ResolvingMetadata } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import React, { type FC, type ReactNode } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
@@ -66,15 +68,58 @@ const ImageComponent: FC<{
 	);
 };
 
+type Props = {
+	params: { slug: string[] };
+};
+
+export async function generateMetadata(
+	{ params }: Props,
+	parent: ResolvingMetadata,
+): Promise<Metadata> {
+	const slug = params.slug;
+	const post = await getPost(slug);
+
+	// オプション: 親のメタデータを取得
+	const previousImages = (await parent).openGraph?.images || [];
+
+	return {
+		title: post?.title,
+		description: post?.excerpt,
+		openGraph: {
+			title: post?.title,
+			description: post?.excerpt,
+			type: "article",
+			publishedTime: post?.date,
+			authors: ["Your Name"],
+			images: [
+				{
+					url: post?.coverImage || "/default-og-image.jpg",
+					width: 1200,
+					height: 630,
+					alt: post?.title,
+				},
+				...previousImages,
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: post?.title,
+			description: post?.excerpt,
+			images: [post?.coverImage || "/default-og-image.jpg"],
+		},
+	};
+}
 export default async function BlogPost({
 	params,
 }: { params: { slug: string[] } }) {
 	const slug = params.slug;
 	const post = await getPost(slug);
-	console.log(post?.content);
 
 	return (
 		<main>
+			<Head>
+				<title>{post?.title}</title>
+			</Head>
 			<article className="flex flex-col gap-y-16">
 				<div className="flex flex-col">
 					<h1 className="text-xl md:text-2xl px-4 py-2">{post?.title}</h1>
