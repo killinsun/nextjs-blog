@@ -11,6 +11,19 @@ export const metadata: Metadata = {
 	title: "お首が長いのよ",
 	description: "チラシの裏",
 	keywords: "プログラミング, フロントエンド, バックエンド, 副業, エンジニア",
+	openGraph: {
+		url: "https://killinsun.com",
+		siteName: "お首が長いのよ",
+		title: "お首が長いのよ",
+		description: "チラシの裏",
+		type: "website",
+		images: {
+			url: "/killinsun_logo_b.png",
+			width: 1200,
+			height: 630,
+			alt: "",
+		},
+	},
 	twitter: {
 		title: "お首が長いのよ",
 		description: "チラシの裏",
