@@ -95,15 +95,15 @@ export async function generateMetadata(
 			type: "article",
 			publishedTime: post?.date,
 			authors: ["Killinsun"],
-			images: [
-				{
-					url: post?.coverImage || "/default-og-image.png",
-					width: post?.coverImage ? 1200 : 420,
-					height: post?.coverImage ? 630 : 420,
-					alt: post?.title,
-				},
-				...previousImages,
-			],
+			// images: [
+			// 	{
+			// 		url: post?.coverImage || "/default-og-image.png",
+			// 		width: post?.coverImage ? 1200 : 420,
+			// 		height: post?.coverImage ? 630 : 420,
+			// 		alt: post?.title,
+			// 	},
+			// 	...previousImages,
+			// ],
 		},
 		twitter: {
 			card: post?.coverImage ? "summary_large_image" : "summary",
