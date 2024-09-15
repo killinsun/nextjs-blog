@@ -38,6 +38,7 @@ export const getBlogPosts = async (
 	offset = 0,
 	limit = 10,
 ): Promise<{ posts: Post[]; count: number }> => {
+	const startTime = Date.now();
 	const postsDirectory = path.join(process.cwd(), "posts");
 
 	const filePaths = getPostFilePaths(postsDirectory, []);
@@ -78,6 +79,8 @@ export const getBlogPosts = async (
 			.slice(offset, offset + limit),
 	);
 
+	const elapsedTime = Date.now() - startTime;
+	console.log("elapsedTime sec", elapsedTime / 1000);
 	return {
 		posts,
 		count: filePaths.length,
@@ -85,6 +88,7 @@ export const getBlogPosts = async (
 };
 
 export const getPost = async (slug: string[]): Promise<Post | null> => {
+	const startTime = Date.now();
 	const postsDirectory = path.join(process.cwd(), "posts");
 
 	const filePath = `${path.join(postsDirectory, ...slug)}.md`;
@@ -101,6 +105,9 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 		.process(content);
 
 	const html = body.toString();
+
+	const elapsedTime = Date.now() - startTime;
+	console.log("elapsedTime sec", elapsedTime / 1000);
 	return {
 		slug: slug.join("/"),
 		date: data.date,
