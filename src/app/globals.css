@@ -44,15 +44,9 @@ h4 {
 	margin: 48px 0 32px;
 }
 
-.blog-post {
-	margin: 32px auto;
-	padding: 0 16px;
-}
-
 .blog-post > p {
 	margin: 16px 0;
 	line-height: 2.15rem;
-	font-size: 1.1rem;
 }
 
 .blog-post > p > code {

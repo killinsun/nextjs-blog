@@ -17,11 +17,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
 			<body className={`${inter.className}`}>
 				<GlobalHeader />
-				<main className="my-8 text-text-secondary max-w-screen-lg mx-auto">
+				<main
+					className="flex flex-col mx-auto
+				py-8 text-text-secondary max-w-screen-md"
+				>
 					{children}
 				</main>
 			</body>

@@ -2,46 +2,129 @@ import path from "node:path";
 import { ArticleMetaData } from "@/components/ArticleMetaData";
 import { getPost } from "@/modules/blogPosts";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
+import React, { type FC, type ReactNode } from "react";
+import ReactMarkdown, { type Components } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { solarizedlight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import rehypeRaw from "rehype-raw";
+
+const DEFAULT_ALLOWED_ELEMENTS = [
+	"h1",
+	"h2",
+	"h3",
+	"h4",
+	"h5",
+	"h6",
+	"p",
+	"a",
+	"img",
+	"ul",
+	"ol",
+	"li",
+	"br",
+	"pre",
+	"code",
+	"span",
+	"u",
+	"strong",
+	"sub",
+	"sup",
+	"s",
+	"div",
+	"style",
+];
+
+const ImageComponent: FC<{
+	slug: string[];
+	className?: string;
+	src?: string;
+	alt?: string;
+}> = (props) => {
+	const { slug, className, src, alt } = props;
+	if (!src) return null;
+
+	// src が"public" から始まる場合はpublicを取り除いて。
+	if (src.startsWith("/public")) {
+		const splitSrc = src.split("/public");
+		const newSrc = splitSrc.join("");
+
+		return <img className={className} src={newSrc} alt={alt || ""} />;
+	}
+
+	const dirPath = slug.slice(0, -1).join("/");
+	const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
+	const imagePath = `/${dirPath}/${cleanSrc}`;
+
+	return (
+		<Image
+			className={className}
+			src={imagePath}
+			alt={alt || ""}
+			width={500}
+			height={300}
+		/>
+	);
+};
 
 export default async function BlogPost({
 	params,
 }: { params: { slug: string[] } }) {
 	const slug = params.slug;
 	const post = await getPost(slug);
+	console.log(post?.content);
 
 	return (
 		<main>
-			<article className="my-8">
-				<h1 className="text-2xl px-4 py-2">{post?.title}</h1>
-				<div className="px-2">{post && <ArticleMetaData post={post} />}</div>
-				<div className="blog-post">
+			<article className="flex flex-col gap-y-16">
+				<div className="flex flex-col">
+					<h1 className="text-xl md:text-2xl px-4 py-2">{post?.title}</h1>
+					<div className="px-2">{post && <ArticleMetaData post={post} />}</div>
+				</div>
+				<div className="px-4 md:px-16 text-sm md:text-base">
 					{post && (
 						<ReactMarkdown
+							allowedElements={DEFAULT_ALLOWED_ELEMENTS}
 							rehypePlugins={[rehypeRaw]}
 							components={{
-								img: ({ node, ...props }) => {
-									const { src, alt } = props;
-									if (!src) return null;
-
-									const dirPath = slug.slice(0, -1).join("/");
-									const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
-									const imagePath = `/${dirPath}/${cleanSrc}`;
+								p: (props) => {
+									return <p className="mb-8" {...props} />;
+								},
+								ul: (props) => {
 									return (
-										<Image
-											src={imagePath}
-											alt={alt || ""}
-											width={500}
-											height={300}
+										<ul
+											className="flex flex-col list-disc list-inside p-8 rounded-xl bg-gray-100 gap-1"
+											{...props}
+										/>
+									);
+								},
+								img: (props) => {
+									return (
+										<ImageComponent
+											className={props.className}
+											slug={slug}
+											src={props.src}
+											alt={props.alt}
 										/>
 									);
 								},
 								code(props) {
 									const { children, className, node, ...rest } = props;
+
 									const match = /language-(\w+)/.exec(className || "");
+
+									const getHTML = (content: ReactNode): string => {
+										if (typeof content === "string") {
+											return content;
+										}
+										if (Array.isArray(content)) {
+											return content.map(getHTML).join("");
+										}
+										if (React.isValidElement(content)) {
+											return getHTML(content.props.children);
+										}
+										return "";
+									};
+
 									return (
 										<>
 											{match && (
@@ -51,7 +134,6 @@ export default async function BlogPost({
 											)}
 											{match ? (
 												<SyntaxHighlighter
-													children={String(children).replace(/\n$/, "")}
 													language={match ? match[1] : "text"}
 													useInlineStyles={!!match}
 													style={solarizedlight}
@@ -66,7 +148,9 @@ export default async function BlogPost({
 														width: "100%",
 														maxWidth: "100%",
 													}}
-												/>
+												>
+													{getHTML(children)}
+												</SyntaxHighlighter>
 											) : (
 												<code className={className} {...rest}>
 													{children}
