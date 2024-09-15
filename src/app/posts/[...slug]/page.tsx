@@ -1,5 +1,7 @@
+import path from "node:path";
 import { ArticleMetaData } from "@/components/ArticleMetaData";
 import { getPost } from "@/modules/blogPosts";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { solarizedlight } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -21,6 +23,22 @@ export default async function BlogPost({
 						<ReactMarkdown
 							rehypePlugins={[rehypeRaw]}
 							components={{
+								img: ({ node, ...props }) => {
+									const { src, alt } = props;
+									if (!src) return null;
+
+									const dirPath = slug.slice(0, -1).join("/");
+									const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
+									const imagePath = `/${dirPath}/${cleanSrc}`;
+									return (
+										<Image
+											src={imagePath}
+											alt={alt || ""}
+											width={500}
+											height={300}
+										/>
+									);
+								},
 								code(props) {
 									const { children, className, node, ...rest } = props;
 									const match = /language-(\w+)/.exec(className || "");
