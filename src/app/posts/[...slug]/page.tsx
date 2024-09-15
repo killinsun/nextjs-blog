@@ -97,8 +97,8 @@ export async function generateMetadata(
 			images: [
 				{
 					url: post?.coverImage || "/default-og-image.png",
-					width: post?.coverImage ? 1200 : 480,
-					height: post?.coverImage ? 630 : 480,
+					width: post?.coverImage ? 1200 : 420,
+					height: post?.coverImage ? 630 : 420,
 					alt: post?.title,
 				},
 				...previousImages,

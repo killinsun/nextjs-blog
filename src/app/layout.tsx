@@ -19,18 +19,19 @@ export const metadata: Metadata = {
 		type: "website",
 		images: {
 			url: "/default-og-image.png",
-			width: 480,
-			height: 480,
+			width: 420,
+			height: 420,
 			alt: "お首が長いのよ_og",
 		},
 	},
 	twitter: {
+		card: "summary",
 		title: "お首が長いのよ",
 		description: "チラシの裏",
 		images: {
 			url: "/default-og-image.png",
-			width: 480,
-			height: 480,
+			width: 420,
+			height: 420,
 			alt: "お首が長いのよ_og",
 		},
 	},
