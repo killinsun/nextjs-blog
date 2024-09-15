@@ -22,7 +22,7 @@ export default async function Home({
 							<h1 className="text-xl md:text-2xl">{post.title}</h1>
 							<ArticleMetaData post={post} />
 							<div>
-								<p className="text-sm">{post.excerpt}</p>
+								<p className="text-sm break-words">{post.excerpt}</p>
 							</div>
 						</article>
 					</Link>
