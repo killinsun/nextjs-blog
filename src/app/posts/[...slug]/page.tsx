@@ -83,6 +83,7 @@ export async function generateMetadata(
 	const previousImages = (await parent).openGraph?.images || [];
 
 	return {
+		metadataBase: new URL("https://blog.killinsun.com"),
 		title: post?.title,
 		description: post?.excerpt,
 		keywords: `プログラミング, フロントエンド, バックエンド, 副業, エンジニア, ${post?.tags?.join(",") ?? ""}`,

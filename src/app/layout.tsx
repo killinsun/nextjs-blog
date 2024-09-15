@@ -8,6 +8,7 @@ import { GlobalHeader } from "@/components/GlobalHeader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://blog.killinsun.com"),
 	title: "お首が長いのよ",
 	description: "チラシの裏",
 	keywords: "プログラミング, フロントエンド, バックエンド, 副業, エンジニア",
