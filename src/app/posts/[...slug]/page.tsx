@@ -97,15 +97,15 @@ export async function generateMetadata(
 			images: [
 				{
 					url: post?.coverImage || "/default-og-image.png",
-					width: 1200,
-					height: 630,
+					width: post?.coverImage ? 1200 : 480,
+					height: post?.coverImage ? 630 : 480,
 					alt: post?.title,
 				},
 				...previousImages,
 			],
 		},
 		twitter: {
-			card: "summary_large_image",
+			card: post?.coverImage ? "summary_large_image" : "summary",
 			title: post?.title,
 			description: post?.excerpt,
 			images: [post?.coverImage || "/default-og-image.png"],
