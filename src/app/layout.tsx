@@ -17,7 +17,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
 			<body className={`${inter.className}`}>
 				<GlobalHeader />

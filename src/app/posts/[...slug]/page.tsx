@@ -15,10 +15,12 @@ export default async function BlogPost({
 
 	return (
 		<main>
-			<article className="my-8">
-				<h1 className="text-2xl px-4 py-2">{post?.title}</h1>
-				<div className="px-2">{post && <ArticleMetaData post={post} />}</div>
-				<div className="blog-post">
+			<article className="flex flex-col gap-y-16">
+				<div className="flex flex-col">
+					<h1 className="text-xl md:text-2xl px-4 py-2">{post?.title}</h1>
+					<div className="px-2">{post && <ArticleMetaData post={post} />}</div>
+				</div>
+				<div className="px-4 md:px-16 text-sm md:text-base">
 					{post && (
 						<ReactMarkdown
 							rehypePlugins={[rehypeRaw]}
