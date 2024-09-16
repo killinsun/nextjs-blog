@@ -48,11 +48,20 @@ export const GlobalFooter = () => {
 				/>
 
 				<p>© 2024 Killinsun</p>
-				<Link href="/posts/fixed-articles/privacy_policy">
-					<p className="text-xs text-gray-500 cursor-pointer">
-						プライバシーポリシー
-					</p>
-				</Link>
+				<div className="flex gap-4">
+					<Link href="/posts/fixed-articles/privacy_policy">
+						<p className="text-xs text-gray-500 cursor-pointer">
+							プライバシーポリシー
+						</p>
+					</Link>
+					<a
+						href="https://docs.google.com/forms/d/e/1FAIpQLSeCe4dcnuqxWgjyKD7e9yyVGTAqLwXdh5RVigwrioElY0mM3w/viewform?usp=sf_link"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<p className="text-xs text-gray-500 cursor-pointer">お問い合わせ</p>
+					</a>
+				</div>
 			</div>
 		</footer>
 	);

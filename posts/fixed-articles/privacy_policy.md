@@ -90,6 +90,8 @@ date: "2024-09-16"
 
 本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。
 
+[お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSeCe4dcnuqxWgjyKD7e9yyVGTAqLwXdh5RVigwrioElY0mM3w/viewform?usp=sf_link)
+
 管理者: Killinsun<br/>
 Eメールアドレス： noneck.0311@gmail.com<br/>
 サイト名： お首が長いのよ
