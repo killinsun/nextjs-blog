@@ -26,10 +26,7 @@ export const ArticleMetaData: FC<Props> = (props) => {
 				</p>
 				<Link href={`/categories/${post.categories}`}>
 					<p className="flex flex-row items-center gap-1">
-						<span
-							className="i-tabler-folder-filled
-					"
-						/>
+						<span className="i-tabler-folder-filled" />
 						{post.categories}
 					</p>
 				</Link>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export const GlobalFooter = () => {
 	return (
-		<footer className="flex flex-col items-center justify-center w-full gap-8">
+		<footer className="flex flex-col items-center justify-center w-full gap-8 mb-4">
 			<div className="flex gap-8 items-center">
 				<a href="https://x.com/Kill_In_Sun" target="_blank" rel="noreferrer">
 					<svg
