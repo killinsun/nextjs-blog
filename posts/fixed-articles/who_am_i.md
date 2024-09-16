@@ -25,10 +25,6 @@ date: "2021-08-22"
 
 ## 首無しキリン - Killinsun
 
-<div class="profile-image-wrapper">
-    <img src="/public/fixed-articles/profile.jpeg " alt="profile" class="profile-image" />
-</div>
-
 ## 概要
 
 1993/03/11 生まれ
