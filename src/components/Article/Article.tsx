@@ -58,6 +58,14 @@ export const Article: FC<Props> = (props) => {
 						p: (props) => {
 							return <p className="mb-8" {...props} />;
 						},
+						a: (props) => {
+							return (
+								<a
+									className="text-blue-500 underline hover:text-blue-700"
+									{...props}
+								/>
+							);
+						},
 						ul: (props) => {
 							return (
 								<ul
