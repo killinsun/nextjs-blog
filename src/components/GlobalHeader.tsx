@@ -15,11 +15,11 @@ export const GlobalHeader = () => {
 
 	const menuItems: MenuItem[] = [
 		{ href: "/categories/エンジニアリング", label: "エンジニアリング" },
+		{ href: "/categories/マネジメント", label: "マネジメント" },
 		{
 			href: "/categories/トラブルシューティング",
 			label: "トラブルシューティング",
 		},
-		{ href: "/categories/マネジメント", label: "マネジメント" },
 		{ href: `/posts${slug}`, label: "私について" },
 	];
 
