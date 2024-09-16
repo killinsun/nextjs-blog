@@ -33,12 +33,15 @@ export const ArticleImage: FC<{
 
 	const handleImageInteraction = () => {
 		// md 以下で画像をクリックした場合は新しいタブで開く
-		if (isMdOrSmaller) {
-			openImageAsNewTab();
-			return;
+		try {
+			if (isMdOrSmaller) {
+				openImageAsNewTab();
+				return;
+			}
+			setShowModal(true);
+		} catch (error) {
+			console.error(error);
 		}
-
-		setShowModal(true);
 	};
 
 	const openImageAsNewTab = () => {
