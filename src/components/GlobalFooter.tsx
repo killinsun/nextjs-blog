@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 export const GlobalFooter = () => {
 	return (
 		<footer className="flex flex-col items-center justify-center w-full gap-8">
@@ -38,7 +39,7 @@ export const GlobalFooter = () => {
 					/>
 				</a>
 			</div>
-			<div className="flex flex-col items-center">
+			<div className="flex flex-col items-center gap-4">
 				<Image
 					src="/killinsun_logo_b.png"
 					alt="Killinsun_logo"
@@ -47,6 +48,11 @@ export const GlobalFooter = () => {
 				/>
 
 				<p>© 2024 Killinsun</p>
+				<Link href="/posts/fixed-articles/privacy_policy">
+					<p className="text-xs text-gray-500 cursor-pointer">
+						プライバシーポリシー
+					</p>
+				</Link>
 			</div>
 		</footer>
 	);
