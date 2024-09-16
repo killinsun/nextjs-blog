@@ -12,7 +12,12 @@ export const GlobalHeader = () => {
 					チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ
 				</p>
 			</div>
-			<div>
+			<div className="flex gap-4">
+				<Link href="/categories/エンジニアリング">エンジニアリング</Link>
+				<Link href="/categories/トラブルシューティング">
+					トラブルシューティング
+				</Link>
+				<Link href="/categories/マネジメント">マネジメント</Link>
 				<Link href={`/posts${slug}`}>私について</Link>
 			</div>
 		</header>

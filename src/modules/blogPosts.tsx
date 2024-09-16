@@ -131,7 +131,8 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 	};
 };
 
-export const getCategories = async (posts: Post[]): Promise<Set<string>> => {
+export const getCategories = async (): Promise<Set<string>> => {
+	const { posts } = await getBlogPosts(0, 1000);
 	const categories = posts.flatMap((post) => post.categories);
 	return new Set(categories);
 };

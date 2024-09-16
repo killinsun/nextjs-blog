@@ -60,7 +60,7 @@ export default function RootLayout({
 				<GlobalHeader />
 				<main
 					className="flex flex-col mx-auto
-				py-8 text-text-secondary max-w-screen-md"
+				py-8 text-text-secondary max-w-screen-lg"
 				>
 					{children}
 				</main>

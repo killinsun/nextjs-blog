@@ -13,7 +13,7 @@ export const ArticleMetaData: FC<Props> = (props) => {
 		<div
 			className="
 		flex flex-col md:flex-row
-		gap-2 md:gap-4
+		gap-0 md:gap-8
 		text-sm
 		bg-background-secondary
 		rounded-lg md:rounded-full
@@ -24,12 +24,16 @@ export const ArticleMetaData: FC<Props> = (props) => {
 					<span className="i-tabler-calendar-filled" />
 					{post.date}
 				</p>
-				<Link href={`/categories/${post.categories}`}>
-					<p className="flex flex-row items-center gap-1">
-						<span className="i-tabler-folder-filled" />
-						{post.categories}
-					</p>
-				</Link>
+				<p className="flex flex-row items-center gap-4">
+					{post.categories.map((category) => (
+						<Link key={category} href={`/categories/${category}`}>
+							<p className="inline-flex items-center gap-1">
+								<span className="i-tabler-folder-filled" />
+								{category}
+							</p>
+						</Link>
+					))}
+				</p>
 			</div>
 			<div className="flex flex-wrap gap-1">
 				{post.tags?.map((tag) => (
