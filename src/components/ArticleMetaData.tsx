@@ -1,4 +1,5 @@
 import type { Post } from "@/modules/blogPosts";
+import Link from "next/link";
 import type { FC } from "react";
 
 type Props = {
@@ -23,20 +24,24 @@ export const ArticleMetaData: FC<Props> = (props) => {
 					<span className="i-tabler-calendar-filled" />
 					{post.date}
 				</p>
-				<p className="flex flex-row items-center gap-1">
-					<span
-						className="i-tabler-folder-filled
+				<Link href={`/categories/${post.categories}`}>
+					<p className="flex flex-row items-center gap-1">
+						<span
+							className="i-tabler-folder-filled
 					"
-					/>
-					{post.categories}
-				</p>
+						/>
+						{post.categories}
+					</p>
+				</Link>
 			</div>
 			<div className="flex flex-wrap gap-1">
 				{post.tags?.map((tag) => (
-					<p key={tag} className="inline-flex items-center gap-1">
-						<span className="i-tabler-tag-filled" />
-						{tag}
-					</p>
+					<Link key={tag} href={`/tags/${tag}`}>
+						<p className="inline-flex items-center gap-1">
+							<span className="i-tabler-tag-filled" />
+							{tag}
+						</p>
+					</Link>
 				))}
 			</div>
 		</div>

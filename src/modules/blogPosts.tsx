@@ -37,6 +37,8 @@ const getPostFilePaths = (dir: string, child: string[]): string[] => {
 export const getBlogPosts = async (
 	offset = 0,
 	limit = 10,
+	categoryName?: string,
+	tagName?: string,
 ): Promise<{ posts: Post[]; count: number }> => {
 	const startTime = Date.now();
 	const postsDirectory = path.join(process.cwd(), "posts");
@@ -75,6 +77,16 @@ export const getBlogPosts = async (
 	).then((posts) =>
 		posts
 			.filter((post) => post.slug.indexOf("fixed-articles") === -1)
+			.filter((post) => {
+				if (!categoryName) return true;
+
+				return post.categories?.includes(categoryName);
+			})
+			.filter((post) => {
+				if (!tagName) return true;
+
+				return post.tags?.includes?.(tagName);
+			})
 			.sort((a, b) => (a.formatter.date > b.formatter.date ? -1 : 1))
 			.slice(offset, offset + limit),
 	);
@@ -83,7 +95,7 @@ export const getBlogPosts = async (
 	console.log("elapsedTime sec", elapsedTime / 1000);
 	return {
 		posts,
-		count: filePaths.length,
+		count: categoryName || tagName ? posts.length : filePaths.length,
 	};
 };
 

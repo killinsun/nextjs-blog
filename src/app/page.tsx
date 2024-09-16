@@ -17,15 +17,15 @@ export default async function Home({
 		<div className="flex flex-col gap-16">
 			<section className="flex flex-col gap-16 p-4 md:p-0">
 				{posts.map((post) => (
-					<Link key={post.slug} href={`/posts${post.slug}`}>
-						<article key={post.slug} className="flex flex-col gap-1">
+					<article key={post.slug} className="flex flex-col gap-1">
+						<Link key={post.slug} href={`/posts${post.slug}`}>
 							<h1 className="text-xl md:text-2xl">{post.title}</h1>
-							<ArticleMetaData post={post} />
-							<div>
-								<p className="text-sm break-words">{post.excerpt}</p>
-							</div>
-						</article>
-					</Link>
+						</Link>
+						<ArticleMetaData post={post} />
+						<div>
+							<p className="text-sm break-words">{post.excerpt}</p>
+						</div>
+					</article>
 				))}
 			</section>
 			<div className="flex justify-center my-4">
