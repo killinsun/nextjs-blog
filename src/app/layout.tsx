@@ -12,13 +12,15 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	metadataBase: new URL("https://blog.killinsun.com"),
 	title: "お首が長いのよ",
-	description: "チラシの裏",
+	description:
+		"チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ",
 	keywords: "プログラミング, フロントエンド, バックエンド, 副業, エンジニア",
 	openGraph: {
 		url: "https://killinsun.com",
 		siteName: "お首が長いのよ",
 		title: "お首が長いのよ",
-		description: "チラシの裏",
+		description:
+			"チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ",
 		type: "website",
 		images: {
 			url: "/default-og-image.png",
@@ -30,7 +32,8 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary",
 		title: "お首が長いのよ",
-		description: "チラシの裏",
+		description:
+			"チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ",
 		images: {
 			url: "/default-og-image.png",
 			width: 420,
