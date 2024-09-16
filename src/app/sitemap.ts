@@ -15,6 +15,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "yearly",
 			priority: 0.5,
 		},
+		{
+			url: "https://blog.killinsun.com/posts/fixed-articles/privacy_policy",
+			lastModified: new Date("2024-09-16 00:00:00"),
+			changeFrequency: "yearly",
+			priority: 0.5,
+		},
 	];
 
 	const sitemapXml = await readSitemapXml();
