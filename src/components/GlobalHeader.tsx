@@ -11,7 +11,6 @@ interface MenuItem {
 export const GlobalHeader = () => {
 	const [showPopupMenu, setShowPopupMenu] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
-	const slug = "/fixed-articles/who_am_i";
 
 	const menuItems: MenuItem[] = [
 		{ href: "/categories/エンジニアリング", label: "エンジニアリング" },
@@ -20,7 +19,7 @@ export const GlobalHeader = () => {
 			href: "/categories/トラブルシューティング",
 			label: "トラブルシューティング",
 		},
-		{ href: `/posts${slug}`, label: "私について" },
+		{ href: "/posts/fixed-articles/who_am_i", label: "私について" },
 	];
 
 	useEffect(() => {
