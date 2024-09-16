@@ -31,6 +31,7 @@ const DEFAULT_ALLOWED_ELEMENTS = [
 	"s",
 	"div",
 	"style",
+	"iframe",
 ];
 
 type Props = {
