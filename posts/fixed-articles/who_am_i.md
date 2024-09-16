@@ -16,7 +16,7 @@ date: "2021-08-22"
 
     .profile-image {
         width: 15rem;
-        border-radius: 50%;
+        border-radius: 50% !important;
         display: flex;
         align-self: center;
     }
