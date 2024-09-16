@@ -1,6 +1,6 @@
 import path from "node:path";
 import { Article } from "@/components/Article/Article";
-import { ArticleMetaData } from "@/components/ArticleMetaData";
+import { ArticleHead } from "@/components/ArticleHead";
 import { getPost } from "@/modules/blogPosts";
 import type { Metadata, ResolvingMetadata } from "next";
 import Head from "next/head";

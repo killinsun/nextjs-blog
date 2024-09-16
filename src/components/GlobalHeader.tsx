@@ -1,4 +1,5 @@
 "use client";
+import GiraffeGradientText from "@/components/GiraffeGradientText";
 import Link from "next/link";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -39,7 +40,9 @@ export const GlobalHeader = () => {
 		<header className="relative flex items-center justify-between bg-background text-text p-4 md:p-8">
 			<div className="flex flex-col">
 				<Link href="/">
-					<p className="text-xl md:text-2xl font-bold">お首が長いのよ</p>
+					<GiraffeGradientText fontSize={24}>
+						お首が長いのよ
+					</GiraffeGradientText>
 				</Link>
 				<p className="text-xs md:text-sm">
 					チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ

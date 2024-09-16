@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ArticleMetaData } from "@/components/ArticleMetaData";
+import { ArticleHead } from "@/components/ArticleHead";
 import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
 
@@ -20,11 +20,15 @@ export default async function CategoryPosts({
 					{decodedSlug} の記事一覧 ({count} 件)
 				</h2>
 				{posts.map((post) => (
-					<article key={post.slug} className="flex flex-col gap-1">
-						<Link key={post.slug} href={`/posts${post.slug}`}>
-							<h1 className="text-xl md:text-2xl">{post.title}</h1>
-						</Link>
-						<ArticleMetaData post={post} />
+					<article
+						key={post.slug}
+						className="flex flex-col gap-1 p-4 rounded border-text border"
+					>
+						<ArticleHead post={post}>
+							<Link key={post.slug} href={`/posts${post.slug}`}>
+								<h1 className="text-xl md:text-2xl">{post.title}</h1>
+							</Link>
+						</ArticleHead>
 						<div>
 							<p className="text-sm break-words">{post.excerpt}</p>
 						</div>

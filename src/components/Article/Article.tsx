@@ -1,5 +1,5 @@
 import { ArticleImage } from "@/components/Article/ArticleImage";
-import { ArticleMetaData } from "@/components/ArticleMetaData";
+import { ArticleHead } from "@/components/ArticleHead";
 import type { Post } from "@/modules/blogPosts";
 import React, { type FC, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
@@ -32,6 +32,8 @@ const DEFAULT_ALLOWED_ELEMENTS = [
 	"div",
 	"style",
 	"iframe",
+	"quote",
+	"blockquote",
 ];
 
 type Props = {
@@ -43,20 +45,27 @@ export const Article: FC<Props> = (props) => {
 	const { post, slug } = props;
 
 	return (
-		<article className="flex flex-col gap-y-16">
+		<article className="flex flex-col gap-y-16 px-4">
 			<div className="flex flex-col">
-				<h1 className="text-xl md:text-2xl px-4 py-2">{post.title}</h1>
-				<div className="px-2">
-					<ArticleMetaData post={post} />
-				</div>
+				<ArticleHead post={post}>
+					<h1 className="text-xl md:text-2xl">{post.title}</h1>
+				</ArticleHead>
 			</div>
-			<div className="px-4 md:px-16 text-sm md:text-base">
+			<div className="text-sm md:text-base">
 				<ReactMarkdown
 					allowedElements={DEFAULT_ALLOWED_ELEMENTS}
 					rehypePlugins={[rehypeRaw]}
 					components={{
 						p: (props) => {
 							return <p className="mb-8" {...props} />;
+						},
+						blockquote: (props) => {
+							return (
+								<blockquote
+									className="border-l-8 border-gray-400 pl-2 italic"
+									{...props}
+								/>
+							);
 						},
 						a: (props) => {
 							return (
