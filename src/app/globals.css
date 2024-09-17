@@ -33,7 +33,7 @@ h2 {
 
 h3 {
 	font-size: 1.2rem;
-	font-weight: 500;
+	font-weight: 700;
 	color: #73613e;
 	padding-bottom: 8px;
 	border-bottom: dashed 2px #f2df98;
@@ -70,4 +70,20 @@ ol {
 
 .blog-post > ul > li {
 	margin: 8px 0;
+}
+
+/*
+ 装飾関連
+ */
+
+/* マーカー */
+.marker-important {
+	background: linear-gradient(transparent 50%, #f2df98 50%);
+}
+
+/* code */
+code {
+	background: #f2df98;
+	padding: 2px 8px;
+	border-radius: 4px;
 }

@@ -1,5 +1,5 @@
 import { ArticleHead } from "@/components/ArticleHead";
-import { getBlogPosts, getCategories } from "@/modules/blogPosts";
+import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
 
 export default async function Home({
@@ -12,9 +12,6 @@ export default async function Home({
 		limit,
 	);
 	const pages = Math.ceil(count / limit);
-
-	const categories = await getCategories();
-	console.log(categories);
 
 	return (
 		<div className="flex flex-col gap-16">
