@@ -41,6 +41,7 @@ export const getBlogPosts = async (
 	tagName?: string,
 ): Promise<{ posts: Post[]; count: number }> => {
 	const startTime = Date.now();
+	const today = startTime;
 	const postsDirectory = path.join(process.cwd(), "posts");
 
 	const filePaths = getPostFilePaths(postsDirectory, []);
@@ -77,6 +78,7 @@ export const getBlogPosts = async (
 	).then((posts) =>
 		posts
 			.filter((post) => post.slug.indexOf("fixed-articles") === -1)
+			.filter((post) => today >= new Date(post.formatter.date).getTime()) // 未来の記事は表示しない≒予約投稿
 			.filter((post) => {
 				if (!categoryName) return true;
 

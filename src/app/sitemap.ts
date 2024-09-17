@@ -50,5 +50,6 @@ export const generateSitemap = async (): Promise<MetadataRoute.Sitemap> => {
 		url: `https://blog.killinsun.com/posts${post.slug}`,
 		changeFrequency: "never",
 		priority: 0.5,
+		lastModified: post.date,
 	}));
 };
