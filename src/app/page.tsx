@@ -1,4 +1,4 @@
-import { ArticleHead } from "@/components/ArticleHead";
+import { ArticleHead } from "@/components/Article/ArticleHead";
 import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
 

@@ -51,12 +51,6 @@ export const getBlogPosts = async (
 			const fileContents = fs.readFileSync(filePath, "utf8");
 			const { data, content } = matter(fileContents);
 
-			const body = await unified()
-				.use(remarkParse)
-				.use(remarkHtml)
-				.process(content);
-			const html = body.toString();
-
 			// remove process.cwd() from filePath
 			const slug = filePath
 				.replace(process.cwd(), "/")
@@ -70,7 +64,7 @@ export const getBlogPosts = async (
 				categories: data.categories,
 				tags: data.tags,
 				formatter: data,
-				content: html,
+				content: content,
 				excerpt:
 					data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 			};
@@ -112,14 +106,6 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 	const fileContents = fs.readFileSync(filePath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const body = await unified()
-		.use(remarkParse)
-		.use(remarkRehype, { allowDangerousHtml: true })
-		.use(rehypeStringify, { allowDangerousHtml: true })
-		.process(content);
-
-	const html = body.toString();
-
 	const elapsedTime = Date.now() - startTime;
 	console.log("elapsedTime sec", elapsedTime / 1000);
 	return {
@@ -128,7 +114,7 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 		title: data.title,
 		categories: data.categories,
 		tags: data.tags,
-		content: html,
+		content: content,
 		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 	};
 };
