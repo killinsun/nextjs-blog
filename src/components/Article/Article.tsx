@@ -1,5 +1,6 @@
+import { ArticleBottom } from "@/components/Article/ArticleBottom";
+import { ArticleHead } from "@/components/Article/ArticleHead";
 import { ArticleImage } from "@/components/Article/ArticleImage";
-import { ArticleHead } from "@/components/ArticleHead";
 import type { Post } from "@/modules/blogPosts";
 import React, { type FC, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
@@ -45,7 +46,7 @@ export const Article: FC<Props> = (props) => {
 	const { post, slug } = props;
 
 	return (
-		<article className="flex flex-col gap-y-16 px-4">
+		<article className="flex flex-col gap-y-4 px-4">
 			<div className="flex flex-col">
 				<ArticleHead post={post}>
 					<h1 className="text-xl md:text-2xl">{post.title}</h1>
@@ -97,6 +98,9 @@ export const Article: FC<Props> = (props) => {
 							const { children, className, node, ...rest } = props;
 
 							const match = /language-(\w+)/.exec(className || "");
+							const fileName = match
+								? (className?.split(":")[1] || "").trim() || ""
+								: "";
 
 							const getHTML = (content: ReactNode): string => {
 								if (typeof content === "string") {
@@ -114,8 +118,9 @@ export const Article: FC<Props> = (props) => {
 							return (
 								<>
 									{match && (
-										<div className="bg-[#fdf6e3] max-w-fit px-4 py-1 rounded-t-lg">
+										<div className="bg-[#fdf6e3] max-w-fit px-4 py-1 rounded-t-lg font-bold">
 											{match[1]}
+											{fileName && `: ${fileName}`}
 										</div>
 									)}
 									{match ? (
@@ -125,10 +130,8 @@ export const Article: FC<Props> = (props) => {
 											style={solarizedlight}
 											showLineNumbers={!!match}
 											customStyle={{
-												display: "inline-block",
 												backgroundColor: "#fdf6e3",
 												color: "#73613e",
-												padding: "0 8px",
 												borderRadius: "0 8px 8px 8px",
 												margin: "0",
 												width: "100%",
@@ -150,6 +153,7 @@ export const Article: FC<Props> = (props) => {
 					{post.content}
 				</ReactMarkdown>
 			</div>
+			<ArticleBottom post={post} />
 		</article>
 	);
 };
