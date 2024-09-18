@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<script src="https://j.wovn.io/1" data-wovnio="key=Zlq6ux" async />
+			<Script src="https://j.wovn.io/1" data-wovnio="key=Zlq6ux" async />
 			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
 			<Script
 				async={true}
