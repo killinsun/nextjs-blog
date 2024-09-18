@@ -46,10 +46,26 @@ const readSitemapXml = async () => {
 export const generateSitemap = async (): Promise<MetadataRoute.Sitemap> => {
 	const { posts } = await getBlogPosts(0, 1000);
 
-	return posts.map((post) => ({
+	const jaPosts: MetadataRoute.Sitemap = posts.map((post) => ({
 		url: `https://blog.killinsun.com/posts${post.slug}`,
 		changeFrequency: "never",
 		priority: 0.5,
 		lastModified: post.date,
 	}));
+
+	const enPosts: MetadataRoute.Sitemap = posts.map((post) => ({
+		url: `https://blog.killinsun.com/posts${post.slug}?wovn=en`,
+		changeFrequency: "never",
+		priority: 0.5,
+		lastModified: post.date,
+	}));
+
+	const koPosts: MetadataRoute.Sitemap = posts.map((post) => ({
+		url: `https://blog.killinsun.com/posts${post.slug}?wovn=ko`,
+		changeFrequency: "never",
+		priority: 0.5,
+		lastModified: post.date,
+	}));
+
+	return [...jaPosts, ...enPosts, ...koPosts];
 };
