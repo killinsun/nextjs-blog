@@ -52,6 +52,7 @@ export const GlobalHeader = () => {
 				<button
 					type="button"
 					className="inline-flex h-12 items-center justify-center rounded-md px-6 font-medium text-neutral-50 transition active:scale-110"
+					aria-label="MenuButton"
 					onClick={() => setShowPopupMenu(!showPopupMenu)}
 				>
 					<span className="i-tabler-menu-2" />

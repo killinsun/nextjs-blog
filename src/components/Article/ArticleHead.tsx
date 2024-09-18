@@ -25,7 +25,13 @@ export const ArticleHead: FC<Props> = (props) => {
 			<div className="flex flex-col md:flex-row items-start md:items-center gap-0 md:gap-8">
 				<div className="flex flex-wrap items-center gap-1">
 					{post.categories.map((category) => (
-						<Link key={category} href={`/categories/${category}`}>
+						<Link
+							key={category}
+							href={`/categories/${category}`}
+							style={{
+								padding: "8px",
+							}}
+						>
 							<p className="inline-flex items-center gap-0">
 								<span className="i-tabler-folder-filled" />
 								{category}
@@ -35,7 +41,13 @@ export const ArticleHead: FC<Props> = (props) => {
 				</div>
 				<div className="flex flex-wrap items-center gap-2">
 					{post.tags?.map((tag) => (
-						<Link key={tag} href={`/tags/${tag}`}>
+						<Link
+							key={tag}
+							href={`/tags/${tag}`}
+							style={{
+								padding: "8px",
+							}}
+						>
 							<p className="inline-flex items-center gap-0">
 								<span className="i-tabler-tag-filled" />
 								{tag}
