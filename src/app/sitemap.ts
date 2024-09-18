@@ -1,5 +1,5 @@
 import { getBlogPosts } from "@/modules/blogPosts";
-import type { Metadata, MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const defaultPages: MetadataRoute.Sitemap = [
@@ -24,7 +24,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	];
 
 	const sitemapXml = await readSitemapXml();
-	console.log(sitemapXml);
 	const dynamicPages = await generateSitemap();
 
 	return [...defaultPages, ...dynamicPages];

@@ -1,12 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
 
 export type Post = {
 	slug: string;
@@ -117,15 +111,4 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 		content: content,
 		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 	};
-};
-
-export const getCategories = async (): Promise<Set<string>> => {
-	const { posts } = await getBlogPosts(0, 1000);
-	const categories = posts.flatMap((post) => post.categories);
-	return new Set(categories);
-};
-
-export const getTags = async (posts: Post[]): Promise<Set<string>> => {
-	const tags = posts.flatMap((post) => post.tags);
-	return new Set(tags);
 };

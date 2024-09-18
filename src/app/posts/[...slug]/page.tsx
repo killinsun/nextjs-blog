@@ -1,15 +1,8 @@
-import path from "node:path";
 import { Article } from "@/components/Article/Article";
-import { ArticleHead } from "@/components/Article/ArticleHead";
 import { getPost } from "@/modules/blogPosts";
 import type { Metadata, ResolvingMetadata } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import React, { type FC, type ReactNode } from "react";
-import ReactMarkdown, { type Components } from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { solarizedlight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import rehypeRaw from "rehype-raw";
+import React from "react";
 
 type Props = {
 	params: { slug: string[] };
