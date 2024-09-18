@@ -18,7 +18,7 @@ export const ArticleBottom: FC<Props> = (props) => {
 	const { post } = props;
 	const [isCopied, setIsCopied] = useState(false);
 
-	const url = `https://blog.killinsun.com/posts${post?.slug}`;
+	const url = `https://blog.killinsun.com/posts/${post?.slug}`;
 	const quote = `
 	
 	
