@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { GlobalFooter } from "@/components/GlobalFooter";
 import { GlobalHeader } from "@/components/GlobalHeader";
+import Head from "next/head";
 import Script from "next/script";
 import type React from "react";
 
@@ -50,12 +51,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
-			<Script
-				async={true}
-				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6418958272896113"
-				crossOrigin="anonymous"
-			/>
+			<Head>
+				<script src="https://j.wovn.io/1" data-wovnio="key=Zlq6ux" async />
+				<GoogleAnalytics gaId="G-9LH5TWEG5T" />
+				<Script
+					async={true}
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6418958272896113"
+					crossOrigin="anonymous"
+				/>
+			</Head>
 			<body className={`${inter.className}`}>
 				<GlobalHeader />
 				<main
