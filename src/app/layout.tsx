@@ -51,15 +51,13 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<Head>
-				<script src="https://j.wovn.io/1" data-wovnio="key=Zlq6ux" async />
-				<GoogleAnalytics gaId="G-9LH5TWEG5T" />
-				<Script
-					async={true}
-					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6418958272896113"
-					crossOrigin="anonymous"
-				/>
-			</Head>
+			<script src="https://j.wovn.io/1" data-wovnio="key=Zlq6ux" async />
+			<GoogleAnalytics gaId="G-9LH5TWEG5T" />
+			<Script
+				async={true}
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6418958272896113"
+				crossOrigin="anonymous"
+			/>
 			<body className={`${inter.className}`}>
 				<GlobalHeader />
 				<main
