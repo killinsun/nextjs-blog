@@ -4,7 +4,7 @@ title: "私について"
 type: "article"
 categories: [ "固定記事" ]
 tags: [ "プロフィール" ]
-date: "2021-08-22"
+date: "2024-09-18"
 ---
 
 <style>
@@ -29,13 +29,20 @@ date: "2021-08-22"
 
 1993/03/11 生まれ
 
-猫派であり Vim 派（最近まで VScode に浮気していたが、 Rails で書くことが多いので Rubymine を使うことが多い)
+猫派
 
-JavaScript/Node.js が好き
+TypeScript が好き
 
 ## 仕事
 
-### 2 社目 [Wovn Technologies, Inc.](https://wovn.io/ja/about)
+### 2 社目 [Wovn Technologies株式会社](https://mx.wovn.io/)
+
+#### 2023/09 ~
+シニアソフトウェアエンジニア 兼　エンジニアリングマネージャー
+
+新規事業の立ち上げに向け、エンジニアリングマネージャーとしてチームをリードしつつ、ソフトウェアエンジニアとしても開発に携わる。
+
+主な技術スタックは `Python` / `TypeScript` / `Next.js` / `GraphQL` / `AWS` / `Azure` / `LLM全般` あたり
 
 #### 2022/05 ~
 ソフトウェアエンジニア
