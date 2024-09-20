@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import type React from "react";
-import { useMemo } from "react";
-import { type FC, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { FC } from "react";
 
 export const ArticleImage: FC<{
 	slug: string[];
@@ -12,6 +12,18 @@ export const ArticleImage: FC<{
 }> = (props) => {
 	const { slug, className, src, alt } = props;
 	const [showModal, setShowModal] = useState(false);
+	const [isMdOrSmaller, setIsMdOrSmaller] = useState(false);
+
+	useEffect(() => {
+		const checkScreenSize = () => {
+			setIsMdOrSmaller(window.matchMedia("(max-width: 768px)").matches);
+		};
+
+		checkScreenSize();
+		window.addEventListener("resize", checkScreenSize);
+
+		return () => window.removeEventListener("resize", checkScreenSize);
+	}, []);
 
 	if (!src) return null;
 
@@ -26,13 +38,7 @@ export const ArticleImage: FC<{
 		imagePath = `/${dirPath}/${cleanSrc}`;
 	}
 
-	const isMdOrSmaller = useMemo(
-		() => window.matchMedia("(max-width: 768px)").matches,
-		[],
-	);
-
 	const handleImageInteraction = () => {
-		// md 以下で画像をクリックした場合は新しいタブで開く
 		try {
 			if (isMdOrSmaller) {
 				openImageAsNewTab();
