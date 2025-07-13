@@ -45,7 +45,7 @@ export const GlobalHeader = () => {
 					</GiraffeGradientText>
 				</Link>
 				<p className="text-xs md:text-sm">
-					チラシの裏よりお届けするソフトウェアエンジニアとして成長したい人のためのブログ
+					チラシの裏
 				</p>
 			</div>
 			<div className="lg:hidden">
