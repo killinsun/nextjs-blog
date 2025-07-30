@@ -4,8 +4,6 @@ import { type FC, useState } from "react";
 import {
 	FacebookIcon,
 	FacebookShareButton,
-	PocketIcon,
-	PocketShareButton,
 	TwitterIcon,
 	TwitterShareButton,
 } from "react-share";
@@ -39,6 +37,7 @@ export const ArticleBottom: FC<Props> = (props) => {
 			}}
 		>
 			<div className="flex flex-col gap-4">
+				<p>このブログには「いいね」機能はあえて実装してないので、かわりに・・・</p>
 				<p>よかったらシェアしてください！</p>
 				<div className="flex flex-wrap gap-2 md:gap-4">
 					<div className="relative">
@@ -61,9 +60,6 @@ export const ArticleBottom: FC<Props> = (props) => {
 					<TwitterShareButton url={url} title={quote}>
 						<TwitterIcon size={32} round />
 					</TwitterShareButton>
-					<PocketShareButton url={url} title={quote}>
-						<PocketIcon size={32} round />
-					</PocketShareButton>
 				</div>
 			</div>
 		</div>
