@@ -36,10 +36,11 @@ export const ArticleBottom: FC<Props> = (props) => {
 				borderTop: "2px solid #f2df98",
 			}}
 		>
-			<div className="flex flex-col gap-4">
-				<p>このブログには「いいね」機能はあえて実装してないので、かわりに・・・</p>
-				<p>よかったらシェアしてください！</p>
-				<div className="flex flex-wrap gap-2 md:gap-4">
+			<div className="flex flex-col gap-8">
+				<div className="flex flex-col gap-2">
+					<p>このブログには「いいね」機能はあえて実装してないので、
+					かわりに・・・よかったらシェアしてください！</p>
+				<div className="flex flex-wrap gap-2 md:gap-4 justify-center">
 					<div className="relative">
 						{isCopied && (
 							<span className="text-xs text-gray-500 absolute bottom-10 left-[-5px]">
@@ -59,7 +60,14 @@ export const ArticleBottom: FC<Props> = (props) => {
 					</FacebookShareButton>
 					<TwitterShareButton url={url} title={quote}>
 						<TwitterIcon size={32} round />
-					</TwitterShareButton>
+						</TwitterShareButton>
+					</div>
+				</div>
+				<div className="flex flex-col items-center">
+					<p>キリンさんにコーヒーを奢る</p>
+					<a href="https://www.buymeacoffee.com/noneck0311f" target="_blank" rel="noreferrer">
+						<img src="/buymeacoffee.png" alt="Buy Me a Coffee" className="w-48" />
+					</a>
 				</div>
 			</div>
 		</div>
