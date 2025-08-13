@@ -38,6 +38,8 @@ export const ArticleImage: FC<{
 		imagePath = `/${dirPath}/${cleanSrc}`;
 	}
 
+	console.log(imagePath);
+
 	const handleImageInteraction = () => {
 		try {
 			if (isMdOrSmaller) {
