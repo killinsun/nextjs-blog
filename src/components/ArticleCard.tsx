@@ -12,11 +12,17 @@ export const ArticleCard = async (props: Props) => {
 	return (
 		<article
 			key={post.slug}
-			className="flex flex-col gap-1 p-4 rounded border-text border"
+			className="group flex flex-col gap-1 p-4 rounded border-text border hover:shadow-md transition-all duration-300 hover:translate-y-[-2px] has-[a:active]:translate-y-0 has-[a:active]:shadow"
 		>
 			<ArticleHead post={post}>
-				<Link key={post.slug} href={`/posts${post.slug}`}>
-					<h1 className="text-xl md:text-2xl">{post.title}</h1>
+				<Link
+					key={post.slug}
+					href={`/posts${post.slug}`}
+					className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text"
+				>
+					<h1 className="text-xl md:text-2xl group-hover:text-yellow-500 transition-all duration-300">
+						{post.title}
+					</h1>
 				</Link>
 			</ArticleHead>
 			<div>
