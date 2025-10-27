@@ -11,7 +11,7 @@ export const GlobalFooter = () => {
 					height={100}
 				/>
 
-				<p>© 2024 Killinsun</p>
+				<p>© 2025 Killinsun</p>
 				<div className="flex gap-8 items-center">
 					<a href="https://x.com/Kill_In_Sun" target="_blank" rel="noreferrer">
 						<svg

@@ -40,9 +40,7 @@ export const GlobalHeader = () => {
 		<header className="relative flex items-center justify-between bg-background text-text p-4 md:p-8">
 			<div className="flex flex-col">
 				<Link href="/">
-					<GiraffeGradientText fontSize={24}>
-						お首が長いのよ
-					</GiraffeGradientText>
+					<p className="text-2xl font-bold">お首が長いのよ</p>
 				</Link>
 				<p className="text-xs md:text-sm">
 					チラシの裏

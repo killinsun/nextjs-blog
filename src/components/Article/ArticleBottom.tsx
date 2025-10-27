@@ -7,6 +7,7 @@ import {
 	TwitterIcon,
 	TwitterShareButton,
 } from "react-share";
+import { BuyMeACoffeeButton } from "./BuyMeACoffeeButton";
 
 type Props = {
 	post: Post;
@@ -37,7 +38,7 @@ export const ArticleBottom: FC<Props> = (props) => {
 			}}
 		>
 			<div className="flex flex-col gap-8">
-				<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-8">
 					<p>このブログには「いいね」機能はあえて実装してないので、
 					かわりに・・・よかったらシェアしてください！</p>
 				<div className="flex flex-wrap gap-2 md:gap-4 justify-center">
@@ -63,12 +64,7 @@ export const ArticleBottom: FC<Props> = (props) => {
 						</TwitterShareButton>
 					</div>
 				</div>
-				<div className="flex flex-col items-center">
-					<p>キリンさんにコーヒーを奢る</p>
-					<a href="https://www.buymeacoffee.com/noneck0311f" target="_blank" rel="noreferrer">
-						<img src="/buymeacoffee.png" alt="Buy Me a Coffee" className="w-48" />
-					</a>
-				</div>
+				<BuyMeACoffeeButton />
 			</div>
 		</div>
 	);
