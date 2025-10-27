@@ -13,7 +13,7 @@ export default async function TagPosts({
 	const { posts, count } = await getBlogPosts(0, 100, undefined, decodedSlug);
 
 	return (
-		<div className="flex flex-col gap-16">
+		<div className="flex flex-col gap-8">
 			<section className="flex flex-col gap-8 md:p-0">
 				<h2 className="m-0 flex items-center gap-0">
 					<span className="i-tabler-tag-filled" />
