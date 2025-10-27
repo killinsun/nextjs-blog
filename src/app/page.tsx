@@ -1,6 +1,8 @@
 import { ArticleHead } from "@/components/Article/ArticleHead";
 import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
+import { AllCategories } from "../components/AllCategories";
+import { AllTags } from "../components/AllTags";
 
 export default async function Home({
 	searchParams,
@@ -14,7 +16,8 @@ export default async function Home({
 	const pages = Math.ceil(count / limit);
 
 	return (
-		<div className="flex flex-col gap-16">
+		<div className="flex flex-col gap-8">
+			<AllCategories />
 			<section className="flex flex-col gap-4 md:p-0">
 				{posts.map((post) => (
 					<article

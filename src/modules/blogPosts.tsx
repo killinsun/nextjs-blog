@@ -112,3 +112,43 @@ export const getPost = async (slug: string[]): Promise<Post | null> => {
 		excerpt: data.excerpt !== "" ? data.excerpt : `${content.slice(0, 200)}...`,
 	};
 };
+
+/**
+ * Get the categories of the posts
+ * @returns Record<string, number> - A record of category names and the number of posts that have the category
+ */
+export const getCategories = async (): Promise<Record<string, number>> => {
+	const postsDirectory = path.join(process.cwd(), "posts");
+	const filePaths = getPostFilePaths(postsDirectory, []);
+
+	const getCategoriesPromise = async (filePath: string) => {
+		const fileContents = fs.readFileSync(filePath, "utf8");
+		const { data } = matter(fileContents);
+		return data.categories?.map((category: string) => category) ?? [];
+	}
+	const categories = await Promise.all(filePaths.map(getCategoriesPromise));
+	return categories.flat().reduce((acc, category) => {
+		acc[category] = (acc[category] || 0) + 1;
+		return acc;
+	}, {});
+};
+
+/**
+ * Get the tags of the posts
+ * @returns Record<string, number> - A record of tag names and the number of posts that have the tag
+ */
+export const getTags = async (): Promise<Record<string, number>> => {
+	const postsDirectory = path.join(process.cwd(), "posts");
+	const filePaths = getPostFilePaths(postsDirectory, []);
+
+	const getTagsPromise = async (filePath: string) => {
+		const fileContents = fs.readFileSync(filePath, "utf8");
+		const { data } = matter(fileContents);
+		return data.tags?.map((tag: string) => tag) ?? [];
+	}
+	const tags = await Promise.all(filePaths.map(getTagsPromise));
+	return tags.flat().reduce((acc, tag) => {
+		acc[tag] = (acc[tag] || 0) + 1;
+		return acc;
+	}, {});
+};

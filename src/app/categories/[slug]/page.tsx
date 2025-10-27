@@ -14,7 +14,7 @@ export default async function CategoryPosts({
 
 	return (
 		<div className="flex flex-col gap-16">
-			<section className="flex flex-col gap-16 p-4 md:p-0">
+			<section className="flex flex-col gap-8 p-4 md:p-0">
 				<h2 className="m-0 flex items-center gap-0">
 					<span className="i-tabler-folder-filled" />
 					{decodedSlug} の記事一覧 ({count} 件)
