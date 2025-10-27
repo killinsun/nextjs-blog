@@ -1,8 +1,8 @@
-import { ArticleHead } from "@/components/Article/ArticleHead";
+
 import { getBlogPosts } from "@/modules/blogPosts";
 import Link from "next/link";
-import { AllCategories } from "../components/AllCategories";
-import { AllTags } from "../components/AllTags";
+import { AllCategories } from "@/components/AllCategories";
+import { ArticleCard } from "@/components/ArticleCard";
 
 export default async function Home({
 	searchParams,
@@ -20,19 +20,7 @@ export default async function Home({
 			<AllCategories />
 			<section className="flex flex-col gap-4 md:p-0">
 				{posts.map((post) => (
-					<article
-						key={post.slug}
-						className="flex flex-col gap-1 p-4 rounded border-text border"
-					>
-						<ArticleHead post={post}>
-							<Link key={post.slug} href={`/posts${post.slug}`}>
-								<h1 className="text-xl md:text-2xl">{post.title}</h1>
-							</Link>
-						</ArticleHead>
-						<div>
-							<p className="text-sm break-words">{post.excerpt}</p>
-						</div>
-					</article>
+					<ArticleCard key={post.slug} post={post} />
 				))}
 			</section>
 			<div className="flex justify-center my-4">
